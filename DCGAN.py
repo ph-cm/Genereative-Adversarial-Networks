@@ -191,4 +191,21 @@ netD.apply(weights_init)
 #Print the model
 print(netD)
     
-    
+#Loss Functions and Optimizers
+
+#Initialize the BCELoss function
+criterion = nn.BCELoss()
+
+#Create batch of latent vectors that will use to visualize the progression of the generator
+fixed_noise = torch.randn(64, nz, 1, 1, device=device)
+
+#Establish convention for real and fake labels during training
+real_label = 1
+fake_label = 0
+
+#Setup Adam optimizers for both Generator and Discriminator
+optimizerD = optim.Adam(netD.parameters(), lr=lr, betas=(beta1, 0.999))
+optimizerG = optim.Adam(netG.parameters(), lr=lr, betas=(beta1, 0.999))
+
+
+ 
